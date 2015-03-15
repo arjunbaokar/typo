@@ -56,6 +56,8 @@ class ArticlesController < ContentController
       # merged_article.comments << article1.comments
       merged_article.comments << article2.comments
       merged_article.save
+
+      redirect_to '/articles/' + merged_article.id.to_s
     end
   end
 
