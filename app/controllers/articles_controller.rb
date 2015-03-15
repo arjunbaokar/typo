@@ -54,9 +54,14 @@ class ArticlesController < ContentController
       merged_article.title = article1.title + " " + article2.title
       merged_article.body = article1.body + " " + article2.body
 
+      # article2.comments.each do |comment|
+      #   merged_article.comments.build(comment.attributes.except(:id))
+      # end
+      # merged_article
+
       merged_article.comments << article2.comments
 
-      # Article.destroy(article2.id)
+      Article.destroy(article2.id)
 
       merged_article.id = article1.id
       merged_article.save
