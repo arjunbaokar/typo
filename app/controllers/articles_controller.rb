@@ -55,8 +55,7 @@ class ArticlesController < ContentController
       merged_article.body = article1.body + " " + article2.body
       # merged_article.comments << article1.comments
       merged_article.comments << article2.comments
-
-      Article.destroy(article1.id)
+      
       Article.destroy(article2.id)
 
       merged_article.id = article1.id
