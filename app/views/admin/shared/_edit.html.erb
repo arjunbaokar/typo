@@ -6,6 +6,6 @@
 
 <% end %>
 
-<form action="" method="POST">
+<form action=<%= "\"/articles/merge" + @article.id.to_s + "\"" %> method="POST">
 	Article ID: <input type="text" name="merge_with"> <input type="submit" value="submit">
 </form>
