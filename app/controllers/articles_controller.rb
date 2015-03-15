@@ -50,7 +50,7 @@ class ArticlesController < ContentController
     if current_user.admin?
       article1 = Article.find_by_id params[:id]
       article2 = Article.find_by_id params[:merge_with]
-      article1 = Article.create(article1.attributes.except(:id))
+      
       article1.title = article1.title
       article1.body = article1.body + " " + article2.body
 
