@@ -57,6 +57,9 @@ class ArticlesController < ContentController
       merged_article.comments << article2.comments
       merged_article.save
 
+      Article.destroy(article1.id)
+      Article.destroy(article2.id)
+
       redirect_to '/articles/' + merged_article.id.to_s
     end
   end
