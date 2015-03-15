@@ -50,23 +50,19 @@ class ArticlesController < ContentController
     if current_user.admin?
       article1 = Article.find_by_id params[:id]
       article2 = Article.find_by_id params[:merge_with]
-      merged_article = Article.create(article1.attributes.except(:id))
-      merged_article.title = article1.title + " " + article2.title
-      merged_article.body = article1.body + " " + article2.body
+      article1 = Article.create(article1.attributes.except(:id))
+      article1.title = article1.title + " " + article2.title
+      article1.body = article1.body + " " + article2.body
 
-      # article2.comments.each do |comment|
-      #   merged_article.comments.build(comment.attributes.except(:id))
-      # end
-      # merged_article
-
-      merged_article.comments << article2.comments
+      article2.comments.each do |comment|
+        article1.comments.build(comment.attributes.except(:id))
+      end
+      
+      article1.save
 
       Article.destroy(article2.id)
 
-      merged_article.id = article1.id
-      merged_article.save
-
-      redirect_to '/admin/content/edit/' + merged_article.id.to_s
+      redirect_to '/admin/content/edit/' + article1.id.to_s
     end
   end
 
