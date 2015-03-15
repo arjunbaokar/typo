@@ -53,7 +53,7 @@ class ArticlesController < ContentController
       merged_article = Article.create(article1.attributes.except(:id))
       merged_article.title = article1.title + " " + article2.title
       merged_article.body = article1.body + " " + article2.body
-      # merged_article.comments << article1.comments
+
       merged_article.comments << article2.comments
 
       # Article.destroy(article2.id)
@@ -61,7 +61,7 @@ class ArticlesController < ContentController
       merged_article.id = article1.id
       merged_article.save
 
-      redirect_to '/admin/content/edit' + merged_article.id.to_s
+      redirect_to '/admin/content/edit/' + merged_article.id.to_s
     end
   end
 
