@@ -7,7 +7,9 @@
 <% end %>
 
 <% if current_user.admin? %>
+	<h3> Merge Articles </h3>
 	<form action=<%= "\"/articles/merge/" + @article.id.to_s + "\"" %> method="POST">
-		Article ID: <input id="merge_with" type="text" name="merge_with"> <input type="submit" value="submit">
+		Article ID: <input id="merge_with" type="text" name="merge_with"> <br>
+		<input type="submit" value="Merge">
 	</form>
 <% end %>
