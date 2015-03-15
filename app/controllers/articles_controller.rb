@@ -47,12 +47,16 @@ class ArticlesController < ContentController
   end
 
   def merge
-    article1 = Article.find_by_id params[:id]
-    article2 = Article.find_by_id params[:merge_with]
-    merged_article = Article.new(title: article1.title + " " + article2.title, body: article1.body + " " + article2.body)
-    merged_article.comments << article1.comments
-    merged_article.comments << article2.comments
-    merged_article.save
+    if current_user.admin?
+      article1 = Article.find_by_id params[:id]
+      article2 = Article.find_by_id params[:merge_with]
+      merged_article.create(article1.attributes.except(:id))
+      merged_article = Article.new(title: article1.title, body: article1.body + " " + article2.body)
+      merged_article.body = article1.body + " " + article2.body
+      # merged_article.comments << article1.comments
+      merged_article.comments << article2.comments
+      merged_article.save
+    end
   end
 
   def search
