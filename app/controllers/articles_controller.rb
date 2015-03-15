@@ -47,7 +47,7 @@ class ArticlesController < ContentController
   end
 
   def merge
-
+    
   end
 
   def search
