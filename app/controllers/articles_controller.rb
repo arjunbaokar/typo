@@ -56,12 +56,12 @@ class ArticlesController < ContentController
       # merged_article.comments << article1.comments
       merged_article.comments << article2.comments
 
-      Article.destroy(article2.id)
+      # Article.destroy(article2.id)
 
       merged_article.id = article1.id
       merged_article.save
 
-      redirect_to '/articles/' + merged_article.id.to_s
+      redirect_to '/admin/content/edit' + merged_article.id.to_s
     end
   end
 
