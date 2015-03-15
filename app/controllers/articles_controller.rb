@@ -47,7 +47,10 @@ class ArticlesController < ContentController
   end
 
   def merge
-    
+    article1 = Article.find_by_id params[:id]
+    article2 = Article.find_by_id params[:merge_with]
+    merged_article = Article.new(title: article1.title + " " + article2.title, body: article1.body + " " + article2.body)
+    merged_article.save
   end
 
   def search
